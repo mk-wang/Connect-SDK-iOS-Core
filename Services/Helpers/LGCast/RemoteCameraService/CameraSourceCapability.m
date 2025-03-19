@@ -37,6 +37,7 @@ NSString *const kRCKeyPreviewSizeH = @"h";
 }
 
 - (NSDictionary *)toNSDictionary {
+#if LG_CAST_ENABLED
     NSMutableArray<NSDictionary *> *cryptoSpec = [[NSMutableArray alloc] init];
     
     for (LGCastSecurityKey *key in _masterKeys) {
@@ -59,6 +60,9 @@ NSString *const kRCKeyPreviewSizeH = @"h";
         kRCKeyCrypto: cryptoSpec,
         kRCKeyPreviewSize: previewSize
     };
+#else
+    return @{};
+#endif
 }
 
 @end

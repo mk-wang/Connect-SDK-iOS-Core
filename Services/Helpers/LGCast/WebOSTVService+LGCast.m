@@ -20,7 +20,8 @@
 #import "WebOSTVService+LGCast.h"
 #import "ServiceAsyncCommand.h"
 #import "WebOSTVServiceSocketClient.h"
-#import <LGCast/LGCast-Swift.h>
+
+#import "LGCast_Fix.h"
 
 @implementation WebOSTVService (LGCast)
 
@@ -104,6 +105,7 @@ NSString *const kCommandTeardown = @"TEARDOWN";
 }
 
 - (void)sendCommandWithService:(NSString *)service command:(NSString *)command parameter:(NSDictionary *)parameter successBlock:(SuccessBlock)success failureBlock:(FailureBlock)failure {
+#if LG_CAST_ENABLED
     if (self.webOSTVServiceConfig == nil || self.webOSTVServiceConfig.clientKey == nil) {
         [Log errorLGCast:@"client key is nil"];
         return;
@@ -123,6 +125,7 @@ NSString *const kCommandTeardown = @"TEARDOWN";
     serviceCommand.callbackComplete = success;
     serviceCommand.callbackError = failure;
     [serviceCommand send];
+#endif
 }
 
 @end

@@ -361,7 +361,7 @@ NSString *lgeUDAPRequestURI[8] = {
     [command send];
 }
 
-- (void) showPairingDialog
+- (void)showPairingDialog
 {
     NSString *title = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Title" value:@"Pairing with device" table:@"ConnectSDK"];
     NSString *message = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request_Pin" value:@"Please enter the pin code" table:@"ConnectSDK"];

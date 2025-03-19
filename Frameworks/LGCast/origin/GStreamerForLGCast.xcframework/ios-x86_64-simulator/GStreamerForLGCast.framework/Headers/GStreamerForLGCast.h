@@ -1,6 +1,6 @@
 //
-//  CameraSourceCapability.h
-//  LGCast
+//  GStreamerForLGCast.h
+//  GStreamerForLGCast
 //
 //  Copyright (c) 2022 LG Electronics. All rights reserved.
 //
@@ -17,19 +17,15 @@
 //  limitations under the License.
 //
 
-#ifndef CameraSourceCapability_h
-#define CameraSourceCapability_h
-
 #import <Foundation/Foundation.h>
-#import "LGCast_Fix.h"
 
-@interface CameraSourceCapability : NSObject
- 
-@property NSArray<LGCastCameraResolutionInfo *> *resolutions;
+#import "LCStreamer.h"
+#import "LCStreamerData.h"
 
-- (void)setSecurityKeys:(NSArray<LGCastSecurityKey *> *)keys;
-- (NSDictionary *)toNSDictionary;
+//! Project version number for LGCast_GStreamer.
+FOUNDATION_EXPORT double LGCast_GStreamerVersionNumber;
 
-@end
+//! Project version string for LGCast_GStreamer.
+FOUNDATION_EXPORT const unsigned char LGCast_GStreamerVersionString[];
 
-#endif /* CameraSourceCapability_h */
+// In this header, you should import all the public headers of your framework using statements like #import <LGCast_GStreamer/PublicHeader.h>

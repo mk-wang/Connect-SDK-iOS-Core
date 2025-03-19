@@ -43,7 +43,11 @@ NSString *const kRCKeyWhiteBalance = @"whiteBalance";
 NSString *const kRCKeyAutoWhiteBalance = @"autoWhiteBalance";
 NSString *const kRCKeyRotation = @"rotation";
 
+#if LG_CAST_ENABLED
 @interface RemoteCameraService () <ConnectionManagerDelegate, LGCastCameraApiDelegate>
+#else
+@interface RemoteCameraService () <ConnectionManagerDelegate>
+#endif
 
 @property ConnectionManager *connectionManager;
 @property BOOL isRunning;
@@ -78,10 +82,15 @@ NSString *const kRCKeyRotation = @"rotation";
     _isPlaying = NO;
     _connectionManager = ConnectionManager.sharedInstance;
     _connectionManager.delegate = self;
+    
+#if LG_CAST_ENABLED
     [[LGCastCameraApi shared] setDelegate:self];
+#endif
     
     return self;
 }
+
+#if LG_CAST_ENABLED
 
 - (UIView *)startRemoteCamera:(ConnectableDevice *)device settings:(nullable NSDictionary<NSString *, id> *)settings {
     [Log infoLGCast:@"startRemoteCamera"];
@@ -409,5 +418,7 @@ NSString *const kRCKeyRotation = @"rotation";
         [_delegate remoteCameraErrorDidOccur:error];
     }
 }
+
+#endif
 
 @end

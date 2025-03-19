@@ -29,6 +29,8 @@
 }
 
 - (NSDictionary *)toNSDictionary {
+#if LG_CAST_ENABLED
+
     NSDictionary* videoSpec = [NSDictionary dictionaryWithObjectsAndKeys:
                             _videoCodec, @"codec",
                             [NSNumber numberWithLong:_videoClockRate], @"clockRate",
@@ -68,6 +70,9 @@
         @"uibcEnabled": @NO,
         @"supportedFeatures": supportedFeatures
     };
+#else
+    return @{};
+#endif
 }
 
 - (NSDictionary *)toNSDictionaryVideoSize {

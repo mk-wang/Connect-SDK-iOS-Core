@@ -23,7 +23,7 @@
 
 @implementation ServiceDescription
 
-- (instancetype)initWithAddress:(NSString *)address UUID:(NSString*)UUID
+- (instancetype) initWithAddress:(NSString *)address UUID:(NSString*)UUID
 {
     self = [super init];
     

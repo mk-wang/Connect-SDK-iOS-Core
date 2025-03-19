@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 
-#import <LGCast/LGCast-Swift.h>
+#import "LGCast_Fix.h"
 
 #import "ScreenMirroringService.h"
 #import "ConnectionManager.h"
@@ -25,7 +25,12 @@
 #import "MirroringSourceCapability.h"
 #import "MirroringSinkCapability.h"
 
+#if LG_CAST_ENABLED
+
 @interface ScreenMirroringService() <ConnectionManagerDelegate, LGCastMirroringApiDelegate>
+#else
+@interface ScreenMirroringService() <ConnectionManagerDelegate>
+#endif
 
 @property ConnectionManager *connectionManager;
 @property BOOL isRunning;
@@ -62,16 +67,21 @@ NSString *const kSMValueOrientationLandscape = @"landscape";
     return [[self class] sharedInstance];
 }
 
+
 - (instancetype)initPrivate {
     self = [super init];
     
     _isRunning = NO;
     _connectionManager = ConnectionManager.sharedInstance;
     _connectionManager.delegate = self;
+#if LG_CAST_ENABLED
     [[LGCastMirroringApi shared] setDelegate:self];
+#endif
     
     return self;
 }
+
+#if LG_CAST_ENABLED
 
 - (void)startMirroring:(ConnectableDevice *)device settings:(nullable NSDictionary<NSString *,id> *)settings {
     [Log infoLGCast:@"startMirroring"];
@@ -347,4 +357,5 @@ NSString *const kSMValueOrientationLandscape = @"landscape";
     }
 }
 
+#endif
 @end

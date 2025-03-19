@@ -18,7 +18,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LGCast/LGCast-Swift.h>
+#import "LGCast_Fix.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

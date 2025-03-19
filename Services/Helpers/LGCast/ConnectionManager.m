@@ -18,7 +18,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LGCast/LGCast-Swift.h>
+#import "LGCast_Fix.h"
 
 #import "WebOSTVService.h"
 #import "ConnectableDevice.h"

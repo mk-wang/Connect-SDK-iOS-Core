@@ -1,6 +1,6 @@
 //
-//  CameraSourceCapability.h
-//  LGCast
+//  LCStreamerData.h
+//  GStreamerForLGCast
 //
 //  Copyright (c) 2022 LG Electronics. All rights reserved.
 //
@@ -17,19 +17,10 @@
 //  limitations under the License.
 //
 
-#ifndef CameraSourceCapability_h
-#define CameraSourceCapability_h
-
 #import <Foundation/Foundation.h>
-#import "LGCast_Fix.h"
 
-@interface CameraSourceCapability : NSObject
- 
-@property NSArray<LGCastCameraResolutionInfo *> *resolutions;
+typedef NSString *LCStreamerDataKey;
 
-- (void)setSecurityKeys:(NSArray<LGCastSecurityKey *> *)keys;
-- (NSDictionary *)toNSDictionary;
-
-@end
-
-#endif /* CameraSourceCapability_h */
+extern LCStreamerDataKey const LCStreamerDataKeyPipeline;
+extern LCStreamerDataKey const LCStreamerDataKeySecurityMasterKeyData;
+extern LCStreamerDataKey const LCStreamerDataKeySecurityMkiData;
